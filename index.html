@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span>
+            <input type="radio" name="duration" id="h45" value="h45" checked>
+            <label for="h45">45min</label>
+        </span>
+        <span>
+            <input type="radio" name="duration" id="h40" value="h40">
+            <label for="h40">40min</label>
+        </span>
+        <span>
+            <input type="radio" name="duration" id="h35" value="h35">
+            <label for="h35">35min</label>
+        </span>
+    </div>
+    <h1></h1>
+    <div class="info"></div>
+    <button onclick="refresh()">refresh</button>
+
+    <script src="main.js"></script>
+    <script>
+        let bellShedule = [];
+
+        function getCurrentTime() {
+            let now = new Date();
+            let hour = now.getHours().toString().padStart(2, '0');
+            let min = now.getMinutes().toString().padStart(2, '0');
+
+            return hour + ":" + min;
+        }
+
+        let actualTime=getCurrentTime();
+        document.querySelector("h1").innerHTML=actualTime;
+
+
+        function info() {
+            let selectedVal = document.querySelector('input[name="duration"]:checked').value 
+            console.log(SelectedVal);
+            console.log(tipus.value);
+            // if(tipus == "h45"){
+            //     let current = bellShedules.h45.find(obj=>actualTime>=obj.from && actualTime<=obj.to)
+            // }
+            // else if(tipus == "h40"){
+            //     let current = bellShedules.h40.find(obj=>actualTime>=obj.from && actualTime<=obj.to)
+            // }
+            // else if(tipus == "h35"){
+            //     let current = bellShedules.h35.find(obj=>actualTime>=obj.from && actualTime<=obj.to)
+            // }
+            // let infoStr=''
+            // if(current){
+            //     infoStr=`Most a/az ${current.id}. óra van és a ${current.to}.-ig tart`
+            // }
+            // else{
+            //     infoStr='Most szünet van.....'
+            // }         
+            // return infoStr
+        }
+        document.querySelector('.info').innerHTML=info();
+
+        function refresh() {
+            let selectedVal=document.querySelector('input[name="duration"]:checked').value 
+            bellShedule=bellShedules[selectedVal]
+            console.log(bellShedule);
+            document.querySelector("h1").innerHTML=getCurrentTime();
+            document.querySelector('.info').innerHTML=info();
+        }
+    </script>
+</body>
+</html>
